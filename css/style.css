@@ -9,10 +9,9 @@
     margin: 0px auto;
     display: flex;
     justify-content: space-between;
+    list-style: none;
 }
 
 .img_LOGO{
     width: 120px;
 }
-
-.menu
