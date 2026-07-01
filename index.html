@@ -1,55 +1,266 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> projeto pet shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petz</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+}
+
+header{
+    background:#222;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+}
+
+header h1{
+    font-size:32px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+.banner{
+    background:linear-gradient(135deg,#ffb347,#ff7a00);
+    color:white;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.banner h2{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.banner p{
+    font-size:20px;
+    margin-bottom:25px;
+}
+
+.banner button{
+    background:white;
+    color: white;
+    border:none;
+    padding:15px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.banner button:hover{
+    background:#f1f1f1;
+}
+
+.produtos{
+    padding:50px 8%;
+}
+
+.produtos h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#333;
+}
+
+.cards{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:260px;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3{
+    padding:15px;
+}
+
+.card p{
+    padding:0 15px;
+    color:#666;
+}
+
+.preco{
+    color:#000000;
+    font-size:25px;
+    font-weight:bold;
+    padding:15px;
+}
+
+.card button{
+    width:90%;
+    margin:15px;
+    padding:12px;
+    background:white;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.card button:hover{
+    background:white;
+}
+
+.servicos{
+    background:white;
+    padding:60px 8%;
+}
+
+.servicos h2{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.lista{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.item{
+    background:#fff8f1;
+    padding:25px;
+    width:250px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.item h3{
+    color:rgb(0, 0, 0);
+    margin-bottom:10px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+}
+</style>
+
 </head>
 <body>
 
 <header>
-    <figure>
-        <img src="./img/logo-petz-primary.svg" alt="">
-    </figure>
+    <h1> petz</h1>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Produtos</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
+    </nav>
 </header>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">adote petz</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Adestramento</a></li>
-            <li><a class="dropdown-item" href="#"> BANHO E TOSA
-            </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">veterinario</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">cachoro</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-  
-    </div>
-     
-  </div>
-</nav>
+
+<section class="banner">
+    <h2>Tudo para o seu melhor amigo!</h2>
+    <p>Rações, brinquedos, higiene, acessórios e muito mais.</p>
+    <button>Ver Produtos</button>
+</section>
+
+<section class="produtos">
+
+<h2>Produtos em Destaque</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600" alt="Ração">
+<h3>Ração Premium</h3>
+<p>Nutrição completa para cães adultos.</p>
+<div class="preco">R$ 89,90</div>
+<button>Comprar</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600" alt="Brinquedo">
+<h3>Brinquedo Interativo</h3>
+<p>Diversão garantida para o seu pet.</p>
+<div class="preco">R$ 39,90</div>
+<button>Comprar</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600" alt="Caminha">
+<h3>Caminha Confort</h3>
+<p>Máximo conforto para cães e gatos.</p>
+<div class="preco">R$ 159,90</div>
+<button>Comprar</button>
+</div>
+
+</div>
+
+</section>
+
+<section class="servicos">
+
+<h2>Nossos Serviços</h2>
+
+<div class="lista">
+
+<div class="item">
+<h3>🛁 Banho & Tosa</h3>
+<p>Profissionais especializados para cuidar do seu pet.</p>
+</div>
+
+<div class="item">
+<h3>❤️ Clínica Veterinária</h3>
+<p>Atendimento com médicos veterinários qualificados.</p>
+</div>
+
+<div class="item">
+<h3>🚚 Entrega Rápida</h3>
+<p>Receba seus produtos no conforto da sua casa.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Petz - Seu pet merece o melhor.</p>
+</footer>
+
 </body>
 </html>
