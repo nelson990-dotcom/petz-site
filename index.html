@@ -1,266 +1,591 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Petz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop Amigo Fiel - Tudo para o seu Pet</title>
+    <style>
+        /* --- RESET E CONFIGURAÇÕES GERAIS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body{
-    background:#f5f7fa;
-}
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
 
-header{
-    background:#222;
-    color:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-}
+        /* --- CABEÇALHO (HEADER) --- */
+        header {
+            background-color: #0f172a;
+            /* Azul Escuro */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-header h1{
-    font-size:32px;
-}
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            gap: 20px;
+        }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
-}
+        .logo {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
 
-nav a:hover{
-    text-decoration:underline;
-}
+        .logo span {
+            color: #ff9f1c;
+            /* Laranja Accent */
+        }
 
-.banner{
-    background:linear-gradient(135deg,#ffb347,#ff7a00);
-    color:white;
-    text-align:center;
-    padding:80px 20px;
-}
+        /* --- NOVA BARRA DE PESQUISA --- */
+        .busca-container {
+            display: flex;
+            align-items: center;
+            background-color: #1e293b;
+            border-radius: 50px;
+            padding: 5px 15px;
+            flex-grow: 1;
+            max-width: 400px;
+            border: 1px solid #334155;
+        }
 
-.banner h2{
-    font-size:45px;
-    margin-bottom:15px;
-}
+        .busca-container input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            padding: 8px 10px;
+            width: 100%;
+            font-size: 14px;
+            outline: none;
+        }
 
-.banner p{
-    font-size:20px;
-    margin-bottom:25px;
-}
+        .busca-container input::placeholder {
+            color: #64748b;
+        }
 
-.banner button{
-    background:white;
-    color: white;
-    border:none;
-    padding:15px 30px;
-    font-size:18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
+        .busca-container button {
+            background: transparent;
+            border: none;
+            color: #ff9f1c;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 5px;
+            transition: transform 0.2s ease;
+        }
 
-.banner button:hover{
-    background:#f1f1f1;
-}
+        .busca-container button:hover {
+            transform: scale(1.1);
+        }
 
-.produtos{
-    padding:50px 8%;
-}
+        nav {
+            display: flex;
+            gap: 20px;
+            white-space: nowrap;
+        }
 
-.produtos h2{
-    text-align:center;
-    margin-bottom:40px;
-    color:#333;
-}
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
 
-.cards{
-    display:flex;
-    gap:25px;
-    justify-content:center;
-    flex-wrap:wrap;
-}
+        nav a:hover,
+        nav a.active {
+            color: #ff9f1c;
+        }
 
-.card{
-    width:260px;
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-    transition:.3s;
-}
+        /* --- BANNER PRINCIPAL (HERO) --- */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-.card:hover{
-    transform:translateY(-8px);
-}
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #f8fafc;
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
 
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-.card h3{
-    padding:15px;
-}
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
 
-.card p{
-    padding:0 15px;
-    color:#666;
-}
+        .hero h1 span {
+            color: #ff9f1c;
+        }
 
-.preco{
-    color:#000000;
-    font-size:25px;
-    font-weight:bold;
-    padding:15px;
-}
+        .hero p {
+            font-size: 20px;
+            color: #cbd5e1;
+            margin-bottom: 35px;
+        }
 
-.card button{
-    width:90%;
-    margin:15px;
-    padding:12px;
-    background:white;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
+        .btn-principal {
+            display: inline-block;
+            background-color: #ff9f1c;
+            color: #0f172a;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(255, 159, 28, 0.4);
+            transition: all 0.3s ease;
+        }
 
-.card button:hover{
-    background:white;
-}
+        .btn-principal:hover {
+            background-color: #e08610;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 159, 28, 0.6);
+        }
 
-.servicos{
-    background:white;
-    padding:60px 8%;
-}
+        /* --- SEÇÕES BASE --- */
+        .secao {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
 
-.servicos h2{
-    text-align:center;
-    margin-bottom:35px;
-}
+        .titulo-secao {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 50px;
+            position: relative;
+        }
 
-.lista{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
-}
+        .titulo-secao::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #ff9f1c;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
 
-.item{
-    background:#fff8f1;
-    padding:25px;
-    width:250px;
-    border-radius:10px;
-    text-align:center;
-}
+        /* --- GRIDS COM SUPORTE A CENTRALIZAÇÃO --- */
+        .servicos-grid,
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+            gap: 30px;
+            justify-content: center;
+            /* Centraliza os cards na linha */
+        }
 
-.item h3{
-    color:rgb(0, 0, 0);
-    margin-bottom:10px;
-}
+        /* SERVIÇOS */
+        .servico-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:25px;
-    margin-top:40px;
-}
-</style>
+        .servico-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
 
+        .servico-icone {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .servico-card h3 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .servico-card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* PRODUTOS */
+        .produtos-bg {
+            background-color: #f1f5f9;
+        }
+
+        .produto-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            text-align: center;
+            /* Centraliza textos internos */
+        }
+
+        .produto-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .produto-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #cbd5e1;
+        }
+
+        .produto-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            align-items: center;
+            /* Mantém elementos em coluna no centro */
+        }
+
+        .produto-categoria {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #ff9f1c;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .produto-info h3 {
+            font-size: 18px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .produto-info p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .produto-preco {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .btn-comprar {
+            width: 100%;
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-comprar:hover {
+            background-color: #ff9f1c;
+            color: #0f172a;
+        }
+
+        /* --- RODAPÉ (FOOTER) --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 60px 20px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centraliza conteúdo das colunas */
+            text-align: center;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* --- RESPONSIVIDADE E AJUSTES DE CELULAR --- */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .busca-container {
+                max-width: 100%;
+                width: 100%;
+                order: 3;
+                /* Move a barra para baixo do menu no mobile */
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                order: 2;
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .produtos-grid,
+            .servicos-grid {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h1> petz</h1>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">🐾 Amigo<span>Fiel</span></a>
 
-    <nav>
-        <a href="#">Início</a>
-        <a href="#">Produtos</a>
-        <a href="#">Serviços</a>
-        <a href="#">Contato</a>
-    </nav>
-</header>
+            <form class="busca-container" action="#" method="GET">
+                <input type="text" name="pesquisa" placeholder="O que seu pet precisa hoje?">
+                <button type="submit">🔍</button>
+            </form>
 
-<section class="banner">
-    <h2>Tudo para o seu melhor amigo!</h2>
-    <p>Rações, brinquedos, higiene, acessórios e muito mais.</p>
-    <button>Ver Produtos</button>
-</section>
+            <nav>
+                <a href="#" class="active">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
 
-<section class="produtos">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>O cuidado que o seu <span>melhor amigo</span> merece!</h1>
+            <p>De rações premium a banho & tosa especializado, oferecemos tudo o que seu pet precisa para uma vida
+                longa, saudável e feliz.</p>
+            <a href="#produtos" class="btn-principal">Ver Produtos</a>
+        </div>
+    </section>
 
-<h2>Produtos em Destaque</h2>
+    <section id="servicos" class="secao">
+        <h2 class="titulo-secao">Nossos Serviços</h2>
+        <div class="servicos-grid">
+            <div class="servico-card">
+                <div class="servico-icone">🛁</div>
+                <h3>Banho & Tosa</h3>
+                <p>Estética animal com profissionais carinhosos, shampoos neutros e secagem segura para todas as raças.
+                </p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone">🩺</div>
+                <h3>Atendimento Vet</h3>
+                <p>Consultas de rotina, exames e vacinação para garantir que a saúde do seu pet esteja sempre em dia.
+                </p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone">🏨</div>
+                <h3>Hotelzinho</h3>
+                <p>Vai viajar? Deixe seu pet em um espaço amplo, divertido, seguro e monitorado 24 horas por dia.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="cards">
+    <section id="produtos" class="secao produtos-bg">
+        <h2 class="titulo-secao">Produtos em Destaque</h2>
+        <div class="produtos-grid">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600" alt="Ração">
-<h3>Ração Premium</h3>
-<p>Nutrição completa para cães adultos.</p>
-<div class="preco">R$ 89,90</div>
-<button>Comprar</button>
-</div>
+            <div class="produto-card">
+                <img src="./img/RAÇAO.jpg" alt="Ração Premium" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Alimentação</span>
+                    <h3>Ração Premium Cães</h3>
+                    <p>Nutrição completa e balanceada para cães adultos de médio e grande porte.</p>
+                    <div class="produto-preco">R$ 149,90</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600" alt="Brinquedo">
-<h3>Brinquedo Interativo</h3>
-<p>Diversão garantida para o seu pet.</p>
-<div class="preco">R$ 39,90</div>
-<button>Comprar</button>
-</div>
+            <div class="produto-card">
+                <img src="./img/MORDEDOR.webp" alt="Brinquedo Mordedor" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Brinquedos</span>
+                    <h3>Mordedor Interativo</h3>
+                    <p>Ajuda a reduzir o estresse do animal e auxilia na limpeza dos dentes.</p>
+                    <div class="produto-preco">R$ 39,90</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600" alt="Caminha">
-<h3>Caminha Confort</h3>
-<p>Máximo conforto para cães e gatos.</p>
-<div class="preco">R$ 159,90</div>
-<button>Comprar</button>
-</div>
+            <div class="produto-card">
+                <img src="./img/cama.jpg" alt="Caminha Nuvem" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Acessórios</span>
+                    <h3>Cama Nuvem Confort</h3>
+                    <p>Ultra macia, ideal para proporcionar o descanso perfeito para cães e gatos.</p>
+                    <div class="produto-preco">R$ 119,95</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-</div>
+            <div class="produto-card">
+                <img src="./img/ROUPAS.jpg" alt="Roupa Modelo Ovelha" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Acessórios</span>
+                    <h3>Roupas Soft</h3>
+                    <p>Roupa modelo ovelha feita de material soft de alta qualidade, mantendo seu pet aquecido.</p>
+                    <div class="produto-preco">R$ 78,95</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-</section>
+            <div class="produto-card">
+                <img src="./img/CASINHA.webp" alt="Casinha Cercado Pet" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Acessórios</span>
+                    <h3>Casinha Cercado</h3>
+                    <p>Oferece conforto e segurança em qualquer ambiente. Ideal para cães de pequeno e médio porte.</p>
+                    <div class="produto-preco">R$ 234,95</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-<section class="servicos">
+            <div class="produto-card">
+                <img src="./img/saude.webp" alt="Produtos de Higiene Pet" class="produto-img">
+                <div class="produto-info">
+                    <span class="produto-categoria">Saúde</span>
+                    <h3>Higiene e Saúde</h3>
+                    <p>Produtos essenciais de alta qualidade para garantir o bem-estar e o cuidado diário do seu pet.
+                    </p>
+                    <div class="produto-preco">R$ 50,15</div>
+                    <a href="#" class="btn-comprar">Comprar Agora</a>
+                </div>
+            </div>
 
-<h2>Nossos Serviços</h2>
+        </div>
+    </section>
 
-<div class="lista">
-
-<div class="item">
-<h3>🛁 Banho & Tosa</h3>
-<p>Profissionais especializados para cuidar do seu pet.</p>
-</div>
-
-<div class="item">
-<h3>❤️ Clínica Veterinária</h3>
-<p>Atendimento com médicos veterinários qualificados.</p>
-</div>
-
-<div class="item">
-<h3>🚚 Entrega Rápida</h3>
-<p>Receba seus produtos no conforto da sua casa.</p>
-</div>
-
-</div>
-
-</section>
-
-<footer>
-<p>© 2026 Petz - Seu pet merece o melhor.</p>
-</footer>
+    <footer id="contato">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>🐾 AmigoFiel</h4>
+                <p>O shopping preferido do seu companheiro desde 2015.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul>
+                    <li>📞 (12) 99999-9999</li>
+                    <li>✉️ contato@amigofiel.com</li>
+                    <li>📍 Av. dos Pets, 123 - SJC</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PetShop Amigo Fiel. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
 </body>
+
 </html>
